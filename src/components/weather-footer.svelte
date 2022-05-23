@@ -17,11 +17,12 @@
 
 <style>
 	footer {
-		border: 2px solid #000;
+		background-color: #e248c0;
+		box-shadow: 5px 5px black;
+		border: 3px solid #000;
 		padding: 12px 32px;
 		width: 80%;
 		margin: 0 auto;
-		border-radius: 10px;
 		display: flex;
 		text-align: center;
 		justify-content: space-evenly;
@@ -38,7 +39,6 @@
 	}
 
 	strong {
-		color: #444;
 		font-size: 14px;
 		font-weight: 500;
 	}

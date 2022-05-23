@@ -1,3 +1,7 @@
 export async function getWeatherFrom(query = 'Buenos Aires') {
+	console.log('%c getWeatherFrom', 'background-color: red', query);
+	if (query.length === 2) {
+		return fetch(`/api/get-weather?q=${query[0]},${query[1]}`).then((res) => res.json());
+	}
 	return fetch(`/api/get-weather?q=${query}`).then((res) => res.json());
 }

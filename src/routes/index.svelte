@@ -3,7 +3,15 @@
 	import WeatherFooter from '../components/weather-footer.svelte';
 	import WeatherIcon from '../components/weather-icon.svelte';
 
-	const jamonConQueso = getWeatherFrom();
+	let jamonConQueso = getWeatherFrom();
+	$: if (typeof window !== 'undefined' && navigator && navigator.geolocation) {
+		console.log('we exist');
+		const { geolocation } = navigator;
+		geolocation.getCurrentPosition(({ coords: { latitude, longitude } }) => {
+			const coords = [latitude, longitude];
+			jamonConQueso = getWeatherFrom(coords);
+		});
+	}
 </script>
 
 {#await jamonConQueso then weather}
@@ -18,7 +26,7 @@
 
 <style>
 	section {
-		padding: 16px;
+		padding: 2rem;
 	}
 
 	h1 {
@@ -40,7 +48,7 @@
 		font-weight: 700;
 		transform: rotate(-90deg);
 		position: absolute;
-		top: 56px;
-		right: 12px;
+		top: 130px;
+		right: 166px;
 	}
 </style>
