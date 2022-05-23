@@ -1,13 +1,8 @@
 <script>
 	export let icon;
-	export let text;
+	console.log(icon);
 </script>
 
-<img src={icon} alt={text} />
-
-<style>
-	img {
-		width: 100px;
-		height: 100px;
-	}
-</style>
+<div>
+	<svelte:component this={icon} />
+</div>

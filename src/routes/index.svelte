@@ -2,6 +2,7 @@
 	import { getWeatherFrom } from '../services/weather.js';
 	import WeatherFooter from '../components/weather-footer.svelte';
 	import WeatherIcon from '../components/weather-icon.svelte';
+	import { kinds } from '../services/weatherKinds.js';
 
 	let jamonConQueso = getWeatherFrom();
 	$: if (typeof window !== 'undefined' && navigator && navigator.geolocation) {
@@ -15,28 +16,39 @@
 </script>
 
 {#await jamonConQueso then weather}
-	<section>
-		<div>
-			<h1>{weather.locationName}</h1>
-			<h2>{weather.temperature}º</h2>
-		</div>
-		<div class="condition">
+	<main>
+		<h1>{weather.locationName}</h1>
+		<section>
+			<div>
+				<h2>{weather.temperature}º</h2>
+			</div>
+			<div class="condition">
+				<WeatherIcon
+					text={weather.conditionText}
+					icon={kinds[weather.isDay ? 'day' : 'night'].partlyCloudy}
+				/>
+				<div>max/min</div>
+			</div>
 			<h3>{weather.conditionText}</h3>
-			<WeatherIcon text={weather.conditionText} icon={weather.conditionIcon} />
-		</div>
-	</section>
-	<WeatherFooter />
+		</section>
+		<WeatherFooter />
+	</main>
 {/await}
 
 <style>
-	section {
+	main {
 		padding: 2rem;
+	}
+	section {
 		display: flex;
+		justify-content: space-between;
 	}
 
 	.condition {
-		display: flex;
 		align-items: center;
+		display: flex;
+		flex-direction: column;
+		align-self: baseline;
 	}
 
 	h1 {
@@ -56,7 +68,9 @@
 
 	h3 {
 		position: relative;
-		left: 20%;
+		height: 1rem;
+		align-self: center;
+		left: auto;
 		font-weight: 700;
 		transform: rotate(-90deg);
 	}
