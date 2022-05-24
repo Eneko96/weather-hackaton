@@ -1,8 +1,9 @@
 <script>
 	import { getWeatherFrom, getForecast } from '../services/weather.js';
-	import WeatherFooter from '../components/weather-footer.svelte';
+	import WeatherInfo from '../components/weather-footer.svelte';
 	import WeatherIcon from '../components/weather-icon.svelte';
 	import Forecast from '../components/Forecast.svelte';
+	import Searcher from '../components/Searcher.svelte';
 	import { kinds } from '../services/weatherKinds.js';
 	let coords = [];
 	let forecast = null;
@@ -42,6 +43,7 @@
 			</div>
 			<h3>{weather.conditionText}</h3>
 		</section>
+		<WeatherInfo />
 		<button disabled={coords.length === 0} on:click={handleForecast}>forecast</button>
 		<section>
 			<ul>
@@ -57,8 +59,8 @@
 					{/each}
 				{/if}
 			</ul>
-			<WeatherFooter />
 		</section>
+		<Searcher />
 	</main>
 {/await}
 
@@ -107,5 +109,9 @@
 		display: flex;
 		flex-direction: column;
 		gap: 1rem;
+	}
+
+	button {
+		margin-top: 10px;
 	}
 </style>

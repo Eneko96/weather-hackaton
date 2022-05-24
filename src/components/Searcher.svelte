@@ -1,0 +1,76 @@
+<script>
+	let clicked = false;
+	import { expoIn } from 'svelte/easing';
+	import { horizontalSlide } from '../services/transitions';
+
+	function grow(node, { duration }) {
+		return {
+			duration,
+			css: (t) => {
+				const eased = expoIn(t);
+				return `
+        transform: scale(${eased});
+      `;
+			}
+		};
+	}
+</script>
+
+<footer>
+	<button on:click={() => (clicked = !clicked)}>Search</button>
+	{#if clicked}
+		<input transition:horizontalSlide placeholder="Search" />
+	{/if}
+</footer>
+
+<style>
+	footer {
+		display: flex;
+		align-items: center;
+		width: 100%;
+		position: absolute;
+		bottom: 20px;
+		left: 0;
+		right: 0;
+		padding: 12px 32px;
+	}
+	input {
+		background-color: var(--secondary);
+		width: 80%;
+		padding: 8px;
+		height: 3rem;
+		line-height: normal;
+		outline: none;
+		border: 0;
+		border-radius: 4px;
+		font-size: 16px;
+		outline: none;
+		padding-left: 3rem;
+		position: absolute;
+		left: 3rem;
+		border-radius: 25px;
+	}
+
+	input::placeholder {
+		font-size: large;
+		line-height: 3rem;
+		color: black;
+	}
+
+	button {
+		z-index: 1;
+		background: var(--secondary);
+		border: 0;
+		border-radius: 100%;
+		width: 3.4rem;
+		height: 3.5rem;
+		box-shadow: 4px 2px black;
+		border: 3px solid #000;
+		text-align: center;
+		font-family: 'Bebas Neue', cursive;
+	}
+	button:active {
+		box-shadow: 0px 0px black;
+		transform: translate(4px, 2px);
+	}
+</style>

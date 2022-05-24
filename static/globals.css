@@ -6,6 +6,19 @@
   --tertiary: #70E248;
 }
 
-body {
+* {
+  font-family: 'Bebas Neue', cursive;
+}
+
+input {
+  font-family: 'Bebas Neue', cursive;
+}
+
+input::placeholder {
+  text-transform: uppercase;
+  font-family: 'Bebas Neue', cursive;
+}
+
+button {
   font-family: 'Bebas Neue', cursive;
 }

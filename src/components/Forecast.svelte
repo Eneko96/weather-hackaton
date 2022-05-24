@@ -5,12 +5,11 @@
 	export let delay;
 	export let date;
 	export let icon;
-	const formattedDate = new Date(date);
-	const month = formattedDate.getMonth() + 1;
-	const day = formattedDate.getDate();
-	const year = formattedDate.getFullYear();
 
-	const reducedDate = `${month}/${day}/${year}`;
+	const formatOptions = {};
+	const formattedDate = new Intl.DateTimeFormat('detault', { weekday: 'long' }).format(
+		new Date(date)
+	);
 </script>
 
 <article transition:fly={{ delay: delay !== 0 ? delay * 100 : 0, x: -100 }}>
@@ -19,7 +18,7 @@
 		<p>/</p>
 		<p>{maxTemp}º</p>
 	</section>
-	<small>{reducedDate}</small>
+	<small>{formattedDate}</small>
 	<img src={icon} alt="weather icon" />
 </article>
 
