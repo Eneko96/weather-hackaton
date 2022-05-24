@@ -2,13 +2,17 @@
 	import { getWeatherFrom, getForecast } from '../services/weather.js';
 	import WeatherFooter from '../components/weather-footer.svelte';
 	import WeatherIcon from '../components/weather-icon.svelte';
+	import Forecast from '../components/Forecast.svelte';
 	import { kinds } from '../services/weatherKinds.js';
-	import { each } from 'svelte/internal';
 	let coords = [];
 	let forecast = null;
-	const handleForecast = () => {
-		let forecast = getForecast(`${'London'}&days=3`);
-		forecast.then((res) => console.log(res));
+	const handleForecast = async () => {
+		forecast = await getForecast(`${'London'}&days=3`);
+		forecast.forecast.push(forecast.forecast[0]);
+		forecast.forecast.push(forecast.forecast[1]);
+		forecast.forecast.push(forecast.forecast[1]);
+		forecast.forecast.push(forecast.forecast[1]);
+		console.log(forecast);
 	};
 
 	let jamonConQueso = getWeatherFrom();
@@ -38,20 +42,22 @@
 			</div>
 			<h3>{weather.conditionText}</h3>
 		</section>
+		<button disabled={coords.length === 0} on:click={handleForecast}>forecast</button>
 		<section>
 			<ul>
 				{#if forecast}
-					{#each forecast as { forecast: forec }}
-						<li>
-							<div>
-								<div>{forec.day.maxtemp_c}º</div>
-							</div>
-						</li>
+					{#each forecast.forecast as forec, idx}
+						<Forecast
+							delay={idx}
+							maxTemp={forec.day.maxtemp_c}
+							minTemp={forec.day.mintemp_c}
+							date={forec.date}
+							icon={forec.day.condition.icon}
+						/>
 					{/each}
 				{/if}
 			</ul>
 			<WeatherFooter />
-			<button disabled={coords.length === 0} on:click={handleForecast}>forecast</button>
 		</section>
 	</main>
 {/await}
@@ -95,5 +101,11 @@
 		transform: rotate(-90deg);
 		font-size: 10px;
 		text-align: left;
+	}
+
+	ul {
+		display: flex;
+		flex-direction: column;
+		gap: 1rem;
 	}
 </style>
