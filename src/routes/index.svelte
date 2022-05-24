@@ -17,7 +17,12 @@
 	};
 
 	let jamonConQueso = getWeatherFrom();
-	$: if (typeof window !== 'undefined' && navigator && navigator.geolocation) {
+	$: if (
+		typeof window !== 'undefined' &&
+		navigator &&
+		navigator.geolocation &&
+		coords.length === 0
+	) {
 		console.log('we exist');
 		const { geolocation } = navigator;
 		geolocation.getCurrentPosition(({ coords: { latitude, longitude } }) => {
