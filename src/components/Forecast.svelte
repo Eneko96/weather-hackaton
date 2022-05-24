@@ -26,7 +26,7 @@
 <style>
 	article {
 		display: flex;
-		background: var(--secondary);
+		background: var(--tertiary);
 		box-shadow: 5px 5px black;
 		border: 3px solid #000;
 	}
