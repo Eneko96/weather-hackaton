@@ -17,7 +17,10 @@
 </script>
 
 <footer>
-	<button on:click={() => (clicked = !clicked)}>Search</button>
+	<button
+		style={`${clicked && 'box-shadow: 0px 0px black; transform: translate(4px, 2px);'} `}
+		on:click={() => (clicked = !clicked)}>Search</button
+	>
 	{#if clicked}
 		<input transition:horizontalSlide placeholder="Search" />
 	{/if}
@@ -38,16 +41,17 @@
 		background-color: var(--secondary);
 		width: 80%;
 		padding: 8px;
-		height: 3rem;
+		height: 3.5rem;
 		line-height: normal;
 		outline: none;
-		border: 0;
+		border: 3px solid #000;
 		border-radius: 4px;
 		font-size: 16px;
 		outline: none;
 		padding-left: 3rem;
 		position: absolute;
 		left: 3rem;
+		top: 14px;
 		border-radius: 25px;
 	}
 
