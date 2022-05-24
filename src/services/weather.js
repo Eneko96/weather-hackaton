@@ -5,3 +5,8 @@ export async function getWeatherFrom(query = 'Buenos Aires') {
 	}
 	return fetch(`/api/get-weather?q=${query}`).then((res) => res.json());
 }
+
+export async function getForecast(query = 'London&days=3') {
+	return fetch(`/api/get-forecast?q=${query}`).then((res) => res.json());
+}
+
