@@ -4,8 +4,6 @@
   --primary: #FFDCAB;
 }
 
-html,
 body {
   font-family: 'Bebas Neue', cursive;
-  background-color: var(--primary);
 }
