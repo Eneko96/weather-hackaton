@@ -6,7 +6,6 @@
 	export let date;
 	export let icon;
 
-	const formatOptions = {};
 	const formattedDate = new Intl.DateTimeFormat('detault', { weekday: 'long' }).format(
 		new Date(date)
 	);

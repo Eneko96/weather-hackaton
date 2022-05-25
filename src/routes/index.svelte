@@ -6,6 +6,7 @@
 	import Searcher from '../components/Searcher.svelte';
 	import { kinds } from '../services/weatherKinds.js';
 	import { fade } from 'svelte/transition';
+	import { flip } from 'svelte/animate';
 	let coords = [];
 	let firstSearch = false;
 	let weatherKey = 86;
@@ -56,7 +57,11 @@
 			<WeatherInfo humidity={weather.humidity} feel={weather.feelsLike} wind={weather.windSpeed} />
 		{/key}
 	{:else}
-		<h1>Loading</h1>
+		<div class="loading-container">
+			<div class="loading-box">
+				<h1>Loading</h1>
+			</div>
+		</div>
 	{/if}
 	<section>
 		<ul>
@@ -79,6 +84,7 @@
 <style>
 	main {
 		padding: 2rem;
+		height: 100%;
 	}
 	.first-box {
 		display: flex;
@@ -122,5 +128,43 @@
 		display: flex;
 		flex-direction: column;
 		gap: 1rem;
+	}
+
+	.loading-container {
+		height: 100%;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+	}
+
+	.loading-box {
+		box-shadow: 5px 5px black;
+		border: 3px solid #000;
+		width: 65%;
+		background-color: var(--quaternary);
+		line-height: 6rem;
+		text-align: center;
+		animation: 1.5s boop forwards infinite;
+	}
+
+	@keyframes boop {
+		0% {
+			transform: rotate(0deg);
+		}
+		20% {
+			transform: rotate(-3deg);
+		}
+		40% {
+			transform: rotate(4deg);
+		}
+		60% {
+			transform: rotate(-5deg);
+		}
+		80% {
+			transform: rotate(3deg);
+		}
+		100% {
+			transform: rotate(2.6deg);
+		}
 	}
 </style>
