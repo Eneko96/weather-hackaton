@@ -11,12 +11,8 @@
 	let weatherKey = 86;
 	let forecast = null;
 	const handleForecast = async (value) => {
-		forecast = await getForecast(`${value}&days=3`);
+		forecast = await getForecast(`${value}&days=5`);
 		console.log(forecast);
-		// forecast.forecast.push(forecast.forecast[0]);
-		// forecast.forecast.push(forecast.forecast[0]);
-		// forecast.forecast.push(forecast.forecast[0]);
-		// forecast.forecast.push(forecast.forecast[0]);
 	};
 
 	let weather = null;
@@ -26,7 +22,7 @@
 			coords = [latitude, longitude];
 			const getData = async () => {
 				weather = await getWeatherFrom(coords);
-				handleForecast(coords);
+				handleForecast(`${coords}&days=5`);
 			};
 			getData();
 			firstSearch = true;
@@ -36,7 +32,7 @@
 	const handleSearch = async (value) => {
 		coords = [];
 		weather = await getWeatherFrom(value);
-		forecast = await getForecast(value);
+		forecast = await getForecast(`${value}&days=5`);
 	};
 </script>
 

@@ -13,8 +13,8 @@
 </script>
 
 <article
-	in:fly={{ delay: delay !== 0 ? delay * 1000 + 1000 : 1000, x: -100 }}
-	out:fly={{ delay: delay !== 0 ? delay * 10 : 0, x: +100 }}
+	in:fly={{ delay: delay !== 0 ? delay * 100 + 600 : 600, x: -100 }}
+	out:fly={{ delay: delay !== 0 ? delay * 100 : 0, x: +100 }}
 >
 	<section class="temperature-container">
 		<p>{minTemp}º</p>
