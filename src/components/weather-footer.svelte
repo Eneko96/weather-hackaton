@@ -1,22 +1,28 @@
-<footer>
+<script>
+	export let humidity;
+	export let feel;
+	export let wind;
+</script>
+
+<section>
 	<div>
-		<span> 33% </span>
+		<span> {humidity}% </span>
 		<strong> Humidity </strong>
 	</div>
 
 	<div>
-		<span> 12 km/h </span>
+		<span> {feel} </span>
 		<strong> Windspeed </strong>
 	</div>
 
 	<div>
-		<span> 12° </span>
+		<span> {wind}º </span>
 		<strong> Feels like </strong>
 	</div>
-</footer>
+</section>
 
 <style>
-	footer {
+	section {
 		background-color: #e248c0;
 		box-shadow: 5px 5px black;
 		width: 100%;

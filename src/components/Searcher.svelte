@@ -1,19 +1,14 @@
 <script>
 	let clicked = false;
+	export let onSearch;
 	import { expoIn } from 'svelte/easing';
 	import { horizontalSlide } from '../services/transitions';
+	let timer;
 
-	function grow(node, { duration }) {
-		return {
-			duration,
-			css: (t) => {
-				const eased = expoIn(t);
-				return `
-        transform: scale(${eased});
-      `;
-			}
-		};
-	}
+	const handleSearch = (e) => {
+		clearTimeout(timer);
+		timer = setTimeout(() => onSearch(e.target.value), 750);
+	};
 </script>
 
 <footer>
@@ -22,7 +17,7 @@
 		on:click={() => (clicked = !clicked)}>Search</button
 	>
 	{#if clicked}
-		<input transition:horizontalSlide placeholder="Search" />
+		<input on:keyup={handleSearch} transition:horizontalSlide placeholder="Search" />
 	{/if}
 </footer>
 
