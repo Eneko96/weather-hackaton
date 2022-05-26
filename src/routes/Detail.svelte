@@ -14,7 +14,7 @@
 
 {#key 'penis'}
 	<main>
-		<Card delay={200}>
+		<Card delay={200} title="📷 Time">
 			<div class="card-container">
 				<p><span>Moonrise → </span>{astro.moonrise}</p>
 				<p><span>Moonset → </span>{astro.moonset}</p>
@@ -24,7 +24,7 @@
 			</div>
 		</Card>
 		<div class="spacer" />
-		<Card transitionAxis={{ x: -100 }} left delay={400}>
+		<Card transitionAxis={{ x: -100 }} left delay={400} title="Hotties nor coldies">
 			<div class="card-container">
 				<p><span>Day → </span>{day.avgtemp_c}º</p>
 				<p><span>Night → </span>{day.mintemp_c}º</p>
@@ -35,7 +35,7 @@
 			</div>
 		</Card>
 		<div class="spacer" />
-		<Card delay={600}>
+		<Card delay={600} title="Hours">
 			<div class="card-container">
 				{#each hoursToShow as hour}
 					<p><span>{formatDay(hour.time)}:00 → </span>{hour.temp_c}º</p>

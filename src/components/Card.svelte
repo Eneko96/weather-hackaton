@@ -3,10 +3,13 @@
 	export let transitionAxis = { x: 100 };
 	export let left = false;
 	export let delay;
+	export let title;
+
+	const hotties = title.includes('Hottie') && 'hottie';
 </script>
 
 <div class={`${left && 'left'}`} in:fly={{ ...transitionAxis, delay }}>
-	<header />
+	<header class={hotties}>{title}</header>
 	<slot />
 </div>
 
@@ -15,6 +18,15 @@
 		height: 1.5rem;
 		width: 100%;
 		background-color: var(--quaternary);
+		text-align: right;
+		line-height: 25px;
+		font-weight: bold;
+		font-size: 1.2rem;
+		padding-right: 0.3rem;
+	}
+
+	header.hottie {
+		background-color: var(--secondary);
 	}
 	div {
 		width: 10rem;
