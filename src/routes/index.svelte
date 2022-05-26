@@ -6,7 +6,6 @@
 	import Searcher from '../components/Searcher.svelte';
 	import { kinds } from '../services/weatherKinds.js';
 	import { fade } from 'svelte/transition';
-	import { flip } from 'svelte/animate';
 	let coords = [];
 	let firstSearch = false;
 	let weatherKey = 86;
