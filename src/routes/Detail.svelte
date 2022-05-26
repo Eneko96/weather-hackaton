@@ -9,36 +9,36 @@
 	const hoursToShow = [hour[6], hour[8], hour[12], hour[16], hour[20], hour[0]];
 
 	const formatDay = (time) =>
-		new Intl.DateTimeFormat('default', { day: '2-digit', month: '2-digit' }).format(new Date(time));
+		new Intl.DateTimeFormat('default', { hour: '2-digit' }).format(new Date(time));
 </script>
 
 {#key 'penis'}
 	<main>
 		<Card delay={200}>
 			<div class="card-container">
-				<p><span>Moonrise: </span>{astro.moonrise}</p>
-				<p><span>Moonset: </span>{astro.moonset}</p>
-				<p><span>Sunrise: </span>{astro.sunrise}</p>
-				<p><span>Sunset: </span>{astro.sunset}</p>
-				<p><span>Moon Phase: </span>{astro.moon_phase}</p>
+				<p><span>Moonrise → </span>{astro.moonrise}</p>
+				<p><span>Moonset → </span>{astro.moonset}</p>
+				<p><span>Sunrise → </span>{astro.sunrise}</p>
+				<p><span>Sunset → </span>{astro.sunset}</p>
+				<p><span>Moon Phase → </span>{astro.moon_phase}</p>
 			</div>
 		</Card>
 		<div class="spacer" />
 		<Card transitionAxis={{ x: -100 }} left delay={400}>
 			<div class="card-container">
-				<p><span>Day: </span>{day.avgtemp_c}º</p>
-				<p><span>Night: </span>{day.mintemp_c}º</p>
-				<p><span>High: </span>{day.maxtemp_c}º</p>
-				<p><span>Low: </span>{day.mintemp_c}º</p>
-				<p><span>Wind: </span>{day.maxwind_kph}º</p>
-				<p><span>Avg Humidity: </span>{day.avghumidity}º</p>
+				<p><span>Day → </span>{day.avgtemp_c}º</p>
+				<p><span>Night → </span>{day.mintemp_c}º</p>
+				<p><span>High → </span>{day.maxtemp_c}º</p>
+				<p><span>Low → </span>{day.mintemp_c}º</p>
+				<p><span>Wind → </span>{day.maxwind_kph}º</p>
+				<p><span>Avg Humidity → </span>{day.avghumidity}º</p>
 			</div>
 		</Card>
 		<div class="spacer" />
 		<Card delay={600}>
 			<div class="card-container">
 				{#each hoursToShow as hour}
-					<p><span>{formatDay(hour.time)}: </span>{hour.temp_c}º</p>
+					<p><span>{formatDay(hour.time)}:00 → </span>{hour.temp_c}º</p>
 				{/each}
 			</div>
 		</Card>
