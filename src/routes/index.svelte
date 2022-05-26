@@ -93,7 +93,7 @@
 		margin-top: 1rem;
 		display: flex;
 		flex-direction: column;
-		gap: 1rem;
+		gap: 1.2rem;
 	}
 
 	.loading-container {
@@ -132,5 +132,9 @@
 		100% {
 			transform: rotate(2.6deg);
 		}
+	}
+
+	section {
+		padding: 0.5rem 0;
 	}
 </style>
