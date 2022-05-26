@@ -1,5 +1,6 @@
 <script>
 	import { fly } from 'svelte/transition';
+	import { goto } from '$app/navigation';
 	export let maxTemp;
 	export let minTemp;
 	export let delay;
@@ -13,7 +14,8 @@
 
 <article
 	in:fly={{ delay: delay !== 0 ? delay * 100 + 600 : 600, x: -100 }}
-	out:fly={{ delay: delay !== 0 ? delay * 100 : 0, x: +100 }}
+	out:fly|local={{ delay: delay !== 0 ? delay * 100 : 0, x: +100 }}
+	on:click={() => goto('Detail', { state: { date } })}
 >
 	<section class="temperature-container">
 		<p>{minTemp}º</p>
@@ -30,6 +32,12 @@
 		background: var(--tertiary);
 		box-shadow: 5px 5px black;
 		border: 3px solid #000;
+	}
+
+	article:active {
+		box-shadow: 0px 0px black;
+		transform: translate(4px, 2px);
+		user-select: none;
 	}
 	.temperature-container {
 		display: flex;

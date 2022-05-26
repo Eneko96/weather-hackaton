@@ -17,7 +17,12 @@
 		on:click={() => (clicked = !clicked)}>Search</button
 	>
 	{#if clicked}
-		<input on:keyup={handleSearch} transition:horizontalSlide placeholder="Search" />
+		<input
+			on:keyup={handleSearch}
+			in:horizontalSlide
+			out:horizontalSlide|local
+			placeholder="Search"
+		/>
 	{/if}
 </footer>
 

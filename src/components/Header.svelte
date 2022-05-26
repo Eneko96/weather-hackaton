@@ -8,19 +8,24 @@
 	export let conditionText;
 	export let range;
 	export let { maxTemp, minTemp } = range;
+	let keyHeader = 10101010102;
 </script>
 
-<h1>{locationName}</h1>
-<section class="first-box" transition:fade>
-	<div>
-		<h2>{temperature}º</h2>
-	</div>
-	<div class="condition">
-		<WeatherIcon icon={kinds[isDay ? 'day' : 'night'].partlyCloudy} />
-		<div>{maxTemp}º/{minTemp}º</div>
-	</div>
-	<h3>{conditionText}</h3>
-</section>
+{#key keyHeader}
+	<header transition:fade|local>
+		<h1>{locationName}</h1>
+		<section class="first-box">
+			<div>
+				<h2>{temperature}º</h2>
+			</div>
+			<div class="condition">
+				<WeatherIcon icon={kinds[isDay ? 'day' : 'night'].partlyCloudy} />
+				<div>{maxTemp}º/{minTemp}º</div>
+			</div>
+			<h3>{conditionText}</h3>
+		</section>
+	</header>
+{/key}
 
 <style>
 	.first-box {

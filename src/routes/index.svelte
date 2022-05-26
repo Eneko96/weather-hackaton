@@ -12,7 +12,9 @@
 		console.log(forecast);
 	};
 
-	$: if (typeof window !== 'undefined' && !firstSearch) {
+	$: if (typeof window !== 'undefined' && !firstSearch && !forecast) {
+		// don't want to keep calling every back event
+		// manage the state
 		const { geolocation } = navigator;
 		geolocation.getCurrentPosition(({ coords: { latitude, longitude } }) => {
 			coords = [latitude, longitude];
@@ -31,24 +33,18 @@
 </script>
 
 <main>
-	{#if forecast !== null}
-		{#key forecast.locationName}
-			<Header
-				conditionText={forecast.conditionText}
-				locationName={forecast.locationName}
-				isDay={forecast.isDay}
-				temperature={forecast.temperature}
-				range={{
-					maxTemp: forecast.forecast[0].day.maxtemp_c,
-					minTemp: forecast.forecast[0].day.mintemp_c
-				}}
-			/>
-			<WeatherInfo
-				humidity={forecast.humidity}
-				feel={forecast.feelsLike}
-				wind={forecast.windSpeed}
-			/>
-		{/key}
+	{#if forecast}
+		<Header
+			conditionText={forecast.conditionText}
+			locationName={forecast.locationName}
+			isDay={forecast.isDay}
+			temperature={forecast.temperature}
+			range={{
+				maxTemp: forecast.forecast[0].day.maxtemp_c,
+				minTemp: forecast.forecast[0].day.mintemp_c
+			}}
+		/>
+		<WeatherInfo humidity={forecast.humidity} feel={forecast.feelsLike} wind={forecast.windSpeed} />
 	{:else}
 		<div class="loading-container">
 			<div class="loading-box">
