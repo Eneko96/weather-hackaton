@@ -1,11 +1,11 @@
 <script>
 	import { fly } from 'svelte/transition';
-	import { goto } from '$app/navigation';
 	export let maxTemp;
 	export let minTemp;
 	export let delay;
 	export let date;
 	export let icon;
+	export let onClick;
 
 	const formattedDate = new Intl.DateTimeFormat('detault', { weekday: 'long' }).format(
 		new Date(date)
@@ -15,7 +15,7 @@
 <article
 	in:fly={{ delay: delay !== 0 ? delay * 100 + 600 : 600, x: -100 }}
 	out:fly|local={{ delay: delay !== 0 ? delay * 100 : 0, x: +100 }}
-	on:click={() => goto('Detail', { state: { date } })}
+	on:click={() => onClick(delay)}
 >
 	<section class="temperature-container">
 		<p>{minTemp}º</p>

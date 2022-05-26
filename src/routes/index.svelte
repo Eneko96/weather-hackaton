@@ -1,5 +1,6 @@
 <script>
 	import { getForecast } from '../services/weather.js';
+	import { goto } from '$app/navigation';
 	import WeatherInfo from '../components/weather-footer.svelte';
 	import Forecast from '../components/Forecast.svelte';
 	import Searcher from '../components/Searcher.svelte';
@@ -29,6 +30,10 @@
 	const handleSearch = async (value) => {
 		coords = [];
 		forecast = await getForecast(`${value}&days=5`);
+	};
+
+	const handleClick = (idx) => {
+		goto('Detail', { state: { forecast: forecast.forecast[idx] } });
 	};
 </script>
 
@@ -62,6 +67,7 @@
 						minTemp={forec.day.mintemp_c}
 						date={forec.date}
 						icon={forec.day.condition.icon}
+						onClick={handleClick}
 					/>
 				{/each}
 			{/if}

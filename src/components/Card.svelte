@@ -1,12 +1,13 @@
 <script>
 	import { fly } from 'svelte/transition';
 	export let transitionAxis = { x: 100 };
-	export let body;
+	export let left = false;
+	export let delay;
 </script>
 
-<div in:fly={{ ...transitionAxis, delay: 100 }}>
+<div class={`${left && 'left'}`} in:fly={{ ...transitionAxis, delay }}>
 	<header />
-	<p>{body}</p>
+	<slot />
 </div>
 
 <style>
@@ -24,7 +25,7 @@
 		border: 3px solid #000;
 	}
 
-	p {
-		padding: 0 1rem;
+	div.left {
+		margin-left: auto;
 	}
 </style>
