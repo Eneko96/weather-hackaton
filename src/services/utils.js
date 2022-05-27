@@ -6,7 +6,4 @@ export function debounce(func, timeout = 300){
   };
 }
 
-export const toggleCursor = () =>
-document.body.style.cursor === ''
-  ? (document.body.style.cursor = 'wait')
-  : (document.body.style.cursor = '');
+export const themes = ['default', 'wero']

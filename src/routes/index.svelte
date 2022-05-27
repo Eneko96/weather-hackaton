@@ -6,6 +6,8 @@
 	import Searcher from '../components/Searcher.svelte';
 	import Header from '../components/Header.svelte';
 	import forc from '../services/store';
+	import Config from '../components/Config.svelte';
+	import { fade } from 'svelte/transition';
 	let coords = [];
 	let firstSearch = false;
 	let forecast = null;
@@ -52,16 +54,8 @@
 			}}
 		/>
 		<WeatherInfo humidity={forecast.humidity} feel={forecast.feelsLike} wind={forecast.windSpeed} />
-	{:else}
-		<div class="loading-container">
-			<div class="loading-box">
-				<h1>Loading</h1>
-			</div>
-		</div>
-	{/if}
-	<section>
-		<ul>
-			{#if forecast}
+		<section>
+			<ul>
 				{#each forecast.forecast as forec, idx (forec)}
 					<Forecast
 						delay={idx}
@@ -72,9 +66,16 @@
 						onClick={handleClick}
 					/>
 				{/each}
-			{/if}
-		</ul>
-	</section>
+			</ul>
+			<Config />
+		</section>
+	{:else}
+		<div class="loading-container">
+			<div class="loading-box">
+				<h1>Loading</h1>
+			</div>
+		</div>
+	{/if}
 	<Searcher onSearch={handleSearch} />
 </main>
 
@@ -109,7 +110,7 @@
 		box-shadow: 5px 5px black;
 		border: 3px solid #000;
 		width: 65%;
-		background-color: var(--quaternary);
+		background: var(--quaternary);
 		line-height: 6rem;
 		text-align: center;
 		animation: 1.5s boop forwards infinite;

@@ -38,7 +38,7 @@
 		padding: 12px 32px;
 	}
 	input {
-		background-color: var(--secondary);
+		background: var(--secondary);
 		width: 80%;
 		padding: 8px;
 		height: 3.5rem;

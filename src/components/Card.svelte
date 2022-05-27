@@ -17,7 +17,7 @@
 	header {
 		height: 1.5rem;
 		width: 100%;
-		background-color: var(--quaternary);
+		background: var(--quaternary);
 		text-align: right;
 		line-height: 25px;
 		font-weight: bold;
@@ -26,13 +26,13 @@
 	}
 
 	header.hottie {
-		background-color: var(--secondary);
+		background: var(--secondary);
 	}
 	div {
 		width: 10rem;
 		height: 10rem;
 		border-radius: 7px;
-		background-color: white;
+		background: white;
 		box-shadow: 5px 5px black;
 		border: 3px solid #000;
 	}

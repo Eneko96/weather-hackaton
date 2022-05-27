@@ -23,7 +23,7 @@
 
 <style>
 	section {
-		background-color: #e248c0;
+		background: var(--secondary);
 		box-shadow: 5px 5px black;
 		width: 100%;
 		border: 3px solid #000;

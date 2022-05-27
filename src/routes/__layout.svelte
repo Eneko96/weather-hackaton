@@ -4,7 +4,7 @@
 
 <style>
 	:global(body) {
-		background-color: white;
+		background: white;
 		display: grid;
 		place-content: center;
 		margin: 0;
@@ -20,7 +20,7 @@
 	}
 
 	div {
-		background-color: var(--primary);
+		background: var(--primary);
 		width: 400px;
 		max-width: 100%;
 		display: block;

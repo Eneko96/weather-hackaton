@@ -10,6 +10,8 @@
 
 	const formatDay = (time) =>
 		new Intl.DateTimeFormat('default', { hour: '2-digit' }).format(new Date(time));
+
+	const timeZone = (time) => (new Date(time).getHours() >= 12 ? ' pm' : ' am');
 </script>
 
 {#key 'penis'}
@@ -38,7 +40,7 @@
 		<Card delay={600} title="Hours">
 			<div class="card-container">
 				{#each hoursToShow as hour}
-					<p><span>{formatDay(hour.time)}:00 → </span>{hour.temp_c}º</p>
+					<p><span>{formatDay(hour.time)}:00 {timeZone(hour.time)} → </span>{hour.temp_c}º</p>
 				{/each}
 			</div>
 		</Card>
@@ -50,7 +52,7 @@
 
 <style>
 	main {
-		padding: 5rem;
+		padding: 5rem 5rem;
 	}
 
 	button {
@@ -82,7 +84,7 @@
 	}
 
 	.spacer {
-		height: 2rem;
+		height: 2.5rem;
 	}
 
 	p {
