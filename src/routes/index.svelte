@@ -70,6 +70,7 @@
 			</ul>
 			<Config {coords} onUbi={getData} />
 		</section>
+		<Searcher onSearch={handleSearch} />
 	{:else}
 		<div class="loading-container">
 			<div class="loading-box">
@@ -80,7 +81,6 @@
 			</div>
 		</div>
 	{/if}
-	<Searcher onSearch={handleSearch} />
 </main>
 
 <style>
