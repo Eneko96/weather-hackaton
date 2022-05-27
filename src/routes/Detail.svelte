@@ -118,7 +118,7 @@
 	}
 
 	.emogi {
-		margin-left: 0.5rem;
+		margin-left: 0.3rem;
 		position: relative;
 		bottom: 2px;
 		font-size: 0.7rem;
