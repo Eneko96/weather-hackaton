@@ -42,7 +42,7 @@
 </script>
 
 <main>
-	<!-- {#if forecast}
+	{#if forecast}
 		<Header
 			conditionText={forecast.conditionText}
 			locationName={forecast.locationName}
@@ -70,16 +70,16 @@
 			</ul>
 			<Config />
 		</section>
-	{:else} -->
-	<div class="loading-container">
-		<div class="loading-box">
-			<h1>Loading</h1>
-			Powered by: &#32;<a href="https://www.weatherapi.com/" title="Free Weather API"
-				>WeatherAPI.com</a
-			>
+	{:else}
+		<div class="loading-container">
+			<div class="loading-box">
+				<h1>Loading</h1>
+				Powered by: &#32;<a href="https://www.weatherapi.com/" title="Free Weather API"
+					>WeatherAPI.com</a
+				>
+			</div>
 		</div>
-	</div>
-	<!-- {/if} -->
+	{/if}
 	<Searcher onSearch={handleSearch} />
 </main>
 
