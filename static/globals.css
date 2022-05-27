@@ -1,12 +1,15 @@
 @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap');
 
+:root {
+  transition: background .3s;
+}
+
 :root,
 :root.default {
   --primary: #FFDCAB;
   --secondary: #E248C0;
   --tertiary: #70E248;
   --quaternary: #E28748;
-  transition: background 0.3s ease-in-out;
 }
 
 :root.wero {
@@ -14,7 +17,6 @@
   --secondary: #F9F9F9;
   --tertiary: linear-gradient(to right, #F9F9F9, #FFF2CE);
   --quaternary: #4A86E8;
-  transition: background 0.3s ease-in-out;
 }
 
 * {

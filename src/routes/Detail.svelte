@@ -69,7 +69,11 @@
 
 <style>
 	main {
-		padding: 5rem 5rem;
+		padding: 3rem 5rem 7rem 5rem;
+		display: flex;
+		flex-direction: column;
+		justify-content: space-around;
+		height: 100%;
 	}
 
 	button {
@@ -100,17 +104,20 @@
 		padding: 12px 32px;
 	}
 
-	.spacer {
-		height: 2.5rem;
-	}
-
 	p {
 		display: flex;
 		margin: 0;
+		overflow: hidden;
+		white-space: nowrap;
+		text-overflow: ellipsis;
 	}
 
 	.card-container {
 		padding: 0.4rem;
+		display: flex;
+		flex-direction: column;
+		height: 85%;
+		justify-content: space-between;
 	}
 
 	span {

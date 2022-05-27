@@ -35,6 +35,7 @@
 	article {
 		display: flex;
 		background: var(--tertiary);
+		transition: background 0.3s;
 		box-shadow: 5px 5px black;
 		border: 3px solid #000;
 	}

@@ -24,6 +24,7 @@
 <style>
 	section {
 		background: var(--secondary);
+		transition: background 0.3s;
 		box-shadow: 5px 5px black;
 		width: 100%;
 		border: 3px solid #000;

@@ -31,6 +31,7 @@
 		margin-left: auto;
 		padding: 0 0.7rem;
 		background: var(--quaternary);
+		transition: background 0.3s;
 		box-shadow: 5px 5px black;
 		border: 3px solid #000;
 	}
@@ -40,6 +41,7 @@
 		padding: 0.2rem;
 		text-align: center;
 		background: var(--primary);
+		transition: background 0.3s;
 		box-shadow: 3px 3px black;
 		border: 3px solid #000;
 	}

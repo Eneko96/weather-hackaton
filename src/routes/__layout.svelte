@@ -27,12 +27,19 @@
 		box-shadow: 0 0 100px rgba(0, 0, 0, 0.1);
 		border-radius: 8px;
 		position: relative;
+		transition: background 1s;
 	}
 
 	@media screen and (max-width: 600px) {
 		div {
 			height: 100vh;
 			width: 100vw;
+		}
+	}
+
+	@media screen and (max-width: 1200px) {
+		div {
+			aspect-ratio: 8 / 16;
 		}
 	}
 
