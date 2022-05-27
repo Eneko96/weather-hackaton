@@ -7,7 +7,6 @@
 	import Header from '../components/Header.svelte';
 	import forc from '../services/store';
 	import Config from '../components/Config.svelte';
-	import { fade } from 'svelte/transition';
 	let coords = [];
 	let firstSearch = false;
 	let forecast = null;
@@ -17,16 +16,17 @@
 
 	forc.subscribe((val) => (forecast = val));
 
+	const getData = async () => {
+		handleForecast(`${coords}&days=5`);
+	};
+
 	$: if (typeof window !== 'undefined' && !firstSearch && !forecast) {
 		// don't want to keep calling every back event
 		// manage the state
 		const { geolocation } = navigator;
 		geolocation.getCurrentPosition(({ coords: { latitude, longitude } }) => {
 			coords = [latitude, longitude];
-			const getData = async () => {
-				handleForecast(`${coords}&days=5`);
-			};
-			getData();
+			getData(coords);
 			firstSearch = true;
 		});
 	}
@@ -68,7 +68,7 @@
 					/>
 				{/each}
 			</ul>
-			<Config />
+			<Config {coords} onUbi={getData} />
 		</section>
 	{:else}
 		<div class="loading-container">

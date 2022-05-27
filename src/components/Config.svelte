@@ -4,6 +4,7 @@
 	import { themes } from '../services/utils';
 	const [def, wer] = themes;
 	let theme;
+	export let onUbi;
 	themeProvider.subscribe((themeStored) => (theme = themeStored));
 	const handleConfigButton = () => {
 		if (theme === def) themeProvider.changeTheme(wer);
@@ -13,7 +14,7 @@
 
 <article in:fade={{ delay: 1000 }}>
 	<p on:click={handleConfigButton}>Theme</p>
-	<p>second</p>
+	<p on:click={onUbi}>Ubi</p>
 	<p>third</p>
 </article>
 
