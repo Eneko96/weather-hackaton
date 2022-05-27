@@ -5,13 +5,15 @@
 	import Forecast from '../components/Forecast.svelte';
 	import Searcher from '../components/Searcher.svelte';
 	import Header from '../components/Header.svelte';
+	import forc from '../services/store';
 	let coords = [];
 	let firstSearch = false;
 	let forecast = null;
 	const handleForecast = async (value) => {
-		forecast = await getForecast(`${value}&days=5`);
-		console.log(forecast);
+		forc.addForecast(await getForecast(`${value}&days=5`));
 	};
+
+	forc.subscribe((val) => (forecast = val));
 
 	$: if (typeof window !== 'undefined' && !firstSearch && !forecast) {
 		// don't want to keep calling every back event
@@ -29,7 +31,7 @@
 
 	const handleSearch = async (value) => {
 		coords = [];
-		forecast = await getForecast(`${value}&days=5`);
+		forc.addForecast(await getForecast(`${value}&days=5`));
 	};
 
 	const handleClick = (idx) => {
