@@ -12,6 +12,20 @@
 		new Intl.DateTimeFormat('default', { hour: '2-digit' }).format(new Date(time));
 
 	const timeZone = (time) => (new Date(time).getHours() >= 12 ? ' pm' : ' am');
+
+	const emogier = (temperature) => {
+		if (temperature > 22) {
+			return '🥵';
+		} else if (temperature > 18) {
+			return '🥰';
+		} else if (temperature > 15) {
+			return '🤧';
+		} else if (temperature > 10) {
+			return '😰';
+		} else {
+			return '🥶';
+		}
+	};
 </script>
 
 {#key 'penis'}
@@ -40,7 +54,10 @@
 		<Card delay={600} title="Hours">
 			<div class="card-container">
 				{#each hoursToShow as hour}
-					<p><span>{formatDay(hour.time)}:00 {timeZone(hour.time)} → </span>{hour.temp_c}º</p>
+					<p>
+						<span>{formatDay(hour.time)}:00 {timeZone(hour.time)} → </span>
+						<span>{hour.temp_c}º <span class="emogi">{emogier(hour.temp_c)}</span> </span>
+					</p>
 				{/each}
 			</div>
 		</Card>
@@ -88,6 +105,7 @@
 	}
 
 	p {
+		display: flex;
 		margin: 0;
 	}
 
@@ -97,5 +115,12 @@
 
 	span {
 		font-weight: bold;
+	}
+
+	.emogi {
+		margin-left: 0.5rem;
+		position: relative;
+		bottom: 2px;
+		font-size: 0.7rem;
 	}
 </style>
