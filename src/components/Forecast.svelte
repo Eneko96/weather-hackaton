@@ -1,11 +1,14 @@
 <script>
 	import { fly } from 'svelte/transition';
+	import WeatherIcon from '../components/weather-icon.svelte';
+	import { findKind } from '../services/weatherKinds';
 	export let maxTemp;
 	export let minTemp;
 	export let delay;
 	export let date;
-	export let icon;
 	export let onClick;
+	export let conditionText;
+	const isDay = true;
 
 	const formattedDate = new Intl.DateTimeFormat('detault', { weekday: 'long' }).format(
 		new Date(date)
@@ -23,7 +26,9 @@
 		<p>{maxTemp}º</p>
 	</section>
 	<small>{formattedDate}</small>
-	<img src={icon} alt="weather icon" />
+	<span>
+		<WeatherIcon icon={findKind(conditionText, isDay)} height="1.5rem" width="1.5rem" />
+	</span>
 </article>
 
 <style>
@@ -52,10 +57,9 @@
 	small {
 		align-self: flex-end;
 	}
-	img {
-		width: 50px;
-		height: 50px;
-		object-fit: cover;
+	span {
+		margin-top: 0.2rem;
+		margin-right: 0.2rem;
 		margin-left: auto;
 	}
 </style>

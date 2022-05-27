@@ -62,7 +62,8 @@
 						maxTemp={forec.day.maxtemp_c}
 						minTemp={forec.day.mintemp_c}
 						date={forec.date}
-						icon={forec.day.condition.icon}
+						conditionText={forec.day.condition.text}
+						isDay={forec.day.is_day}
 						onClick={handleClick}
 					/>
 				{/each}

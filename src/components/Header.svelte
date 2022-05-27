@@ -1,5 +1,5 @@
 <script>
-	import { kinds } from '../services/weatherKinds';
+	import { findKind } from '../services/weatherKinds';
 	import { fade } from 'svelte/transition';
 	import WeatherIcon from '../components/weather-icon.svelte';
 	export let locationName;
@@ -9,6 +9,8 @@
 	export let range;
 	export let { maxTemp, minTemp } = range;
 	let keyHeader = 10101010102;
+
+	console.log(findKind(conditionText));
 </script>
 
 {#key keyHeader}
@@ -19,7 +21,7 @@
 				<h2>{temperature}º</h2>
 			</div>
 			<div class="condition">
-				<WeatherIcon icon={kinds[isDay ? 'day' : 'night'].partlyCloudy} />
+				<WeatherIcon icon={findKind(conditionText, isDay)} />
 				<div>{maxTemp}º/{minTemp}º</div>
 			</div>
 			<h3>{conditionText}</h3>
