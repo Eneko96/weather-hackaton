@@ -37,6 +37,10 @@
 		border: 3px solid #000;
 	}
 
+	:global(:root.wero) .hottie {
+		background: linear-gradient(to left, var(--secondary), var(--quaternary));
+	}
+
 	div.left {
 		margin-left: auto;
 	}

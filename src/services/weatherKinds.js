@@ -84,6 +84,5 @@ export const kinds = ({
 
 export const findKind = (kind, isDay) => {
   const time = isDay ? 'day' : 'night'
-  console.log(kind, time)
   return kinds[time][kind] ? kinds[time][kind] : kinds[time].default
 }

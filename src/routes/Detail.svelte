@@ -2,14 +2,16 @@
 	import { goto } from '$app/navigation';
 	import Card from '../components/Card.svelte';
 	const forecast = history.state.forecast;
-	console.log(forecast);
 	const { astro, day, hour } = forecast;
-	console.log(astro);
 
 	const hoursToShow = [hour[6], hour[8], hour[12], hour[16], hour[20], hour[0]];
 
-	const formatDay = (time) =>
-		new Intl.DateTimeFormat('default', { hour: '2-digit' }).format(new Date(time));
+	const formatDay = (time) => {
+		const fixDateForAllBrowsers = time.replace(/-/g, '/');
+		return new Intl.DateTimeFormat('default', { hour: '2-digit' }).format(
+			new Date(fixDateForAllBrowsers)
+		);
+	};
 
 	const timeZone = (time) => (new Date(time).getHours() >= 12 ? ' pm' : ' am');
 

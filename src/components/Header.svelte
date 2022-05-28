@@ -9,8 +9,6 @@
 	export let range;
 	export let { maxTemp, minTemp } = range;
 	let keyHeader = 10101010102;
-
-	console.log(findKind(conditionText));
 </script>
 
 {#key keyHeader}

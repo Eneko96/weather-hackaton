@@ -10,14 +10,12 @@ export async function get(event) {
   const { searchParams } = event.url;
   const query = searchParams.get('q');
   const days = searchParams.get('days')
-  console.log(query, days)
 
   const response = await fetch(
     `https://weatherapi-com.p.rapidapi.com/forecast.json?q=${query}&days=${days}`,FETCH_OPTIONS
   )
 
   const data = await response.json();
-  console.log(data.forecast)
 
   const { location, current, forecast } = data;
 	const { country, localtime, name } = location;
