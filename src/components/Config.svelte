@@ -15,7 +15,6 @@
 <article in:fade={{ delay: 1000 }}>
 	<p on:click={handleConfigButton}>Theme</p>
 	<p on:click={onUbi}>Ubi</p>
-	<p>third</p>
 </article>
 
 <style>
@@ -26,7 +25,7 @@
 		display: flex;
 		flex-direction: column;
 		justify-content: space-around;
-		height: 10rem;
+		height: 6.6rem;
 		width: 5rem;
 		margin-left: auto;
 		padding: 0 0.7rem;

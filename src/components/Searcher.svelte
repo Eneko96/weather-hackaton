@@ -6,8 +6,10 @@
 	let timer;
 
 	const handleSearch = (e) => {
-		clearTimeout(timer);
-		timer = setTimeout(() => onSearch(e.target.value), 750);
+		if (e.target.value?.length > 0) {
+			clearTimeout(timer);
+			timer = setTimeout(() => onSearch(e.target.value), 750);
+		}
 	};
 </script>
 

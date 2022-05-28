@@ -6,14 +6,16 @@
 	import Searcher from '../components/Searcher.svelte';
 	import Header from '../components/Header.svelte';
 	import forc from '../services/store';
+	import coordsStore from '../services/coordinatesStore';
 	import Config from '../components/Config.svelte';
-	let coords = [];
 	let firstSearch = false;
 	let forecast = null;
+	let coords = $coordsStore;
 	const handleForecast = async (value) => {
 		forc.addForecast(await getForecast(`${value}&days=5`));
 	};
 
+	coordsStore.subscribe((val) => (coords = val));
 	forc.subscribe((val) => (forecast = val));
 
 	const getData = async () => {
@@ -21,18 +23,15 @@
 	};
 
 	$: if (typeof window !== 'undefined' && !firstSearch && !forecast) {
-		// don't want to keep calling every back event
-		// manage the state
 		const { geolocation } = navigator;
 		geolocation.getCurrentPosition(({ coords: { latitude, longitude } }) => {
-			coords = [latitude, longitude];
+			coordsStore.setCoords([latitude, longitude]);
 			getData(coords);
 			firstSearch = true;
 		});
 	}
 
 	const handleSearch = async (value) => {
-		coords = [];
 		forc.addForecast(await getForecast(`${value}&days=5`));
 	};
 
