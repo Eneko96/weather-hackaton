@@ -8,6 +8,7 @@
 	import forc from '../services/store';
 	import coordsStore from '../services/coordinatesStore';
 	import Config from '../components/Config.svelte';
+	import FunFact from '../components/FunFact.svelte';
 	let firstSearch = false;
 	let forecast = null;
 	let coords = $coordsStore;
@@ -68,6 +69,7 @@
 				{/each}
 			</ul>
 			<Config {coords} onUbi={getData} />
+			<FunFact />
 		</section>
 		<Searcher onSearch={handleSearch} />
 	{:else}

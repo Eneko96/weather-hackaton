@@ -23,12 +23,10 @@
 		top: 33rem;
 		right: 2rem;
 		display: flex;
-		flex-direction: column;
-		justify-content: space-around;
-		height: 6.6rem;
-		width: 5rem;
+		justify-content: space-between;
+		height: 2rem;
+		width: 6rem;
 		margin-left: auto;
-		padding: 0 0.7rem;
 	}
 
 	p {
