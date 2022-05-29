@@ -49,7 +49,7 @@
 	.fun-fact {
 		animation-name: tilt;
 		animation-duration: 0.5s;
-		animation-delay: 13.5s;
+		animation-delay: 16.5s;
 		animation-iteration-count: infinite;
 	}
 
@@ -101,6 +101,7 @@
 		margin-top: 4px;
 		transform-origin: bottom;
 		animation: arrow 15s infinite;
+		animation-delay: 3s;
 	}
 
 	@keyframes arrow {
