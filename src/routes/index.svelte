@@ -9,6 +9,7 @@
 	import coordsStore from '../services/coordinatesStore';
 	import Config from '../components/Config.svelte';
 	import FunFact from '../components/FunFact.svelte';
+	import { fade } from 'svelte/transition';
 	let firstSearch = false;
 	let forecast = null;
 	let coords = $coordsStore;
@@ -69,7 +70,7 @@
 				{/each}
 			</ul>
 			<Config {coords} onUbi={getData} />
-			<FunFact />
+			<div in:fade={{ delay: 3000 }}><FunFact /></div>
 		</section>
 		<Searcher onSearch={handleSearch} />
 	{:else}

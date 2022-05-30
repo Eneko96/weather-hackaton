@@ -2,39 +2,30 @@
 	import { onMount } from 'svelte';
 	import { funFacts } from '../services/utils';
 	import { fade } from 'svelte/transition';
-	let arrowRef;
-	let show = false;
 	let funFact = 'You can tell the temperature by counting a cricket’s chirps!';
 
 	onMount(() => {
-		const timer = setTimeout(() => {
-			show = true;
-		}, 3000);
-
 		const interval = setInterval(() => {
 			funFact = funFacts[Math.floor(Math.random() * funFacts.length)];
 		}, 15000);
 
 		return () => {
 			clearInterval(interval);
-			clearTimeout(timer);
 		};
 	});
 </script>
 
-{#if show}
-	<main transition:fade>
-		<div class="watch-cap" />
-		<div class="watch-container">
-			<div class="watch-arrow" />
+<main transition:fade>
+	<div class="watch-cap" />
+	<div class="watch-container">
+		<div class="watch-arrow" />
+	</div>
+	{#key funFact}
+		<div class="fun-fact" in:fade={{ delay: 200 }} out:fade={{ duration: 100 }}>
+			<p>{funFact}</p>
 		</div>
-		{#key funFact}
-			<div class="fun-fact" in:fade={{ delay: 200 }} out:fade={{ duration: 100 }}>
-				<p>{funFact}</p>
-			</div>
-		{/key}
-	</main>
-{/if}
+	{/key}
+</main>
 
 <style>
 	main {
@@ -49,7 +40,7 @@
 	.fun-fact {
 		animation-name: tilt;
 		animation-duration: 0.5s;
-		animation-delay: 16.5s;
+		animation-delay: 14.5s;
 		animation-iteration-count: infinite;
 	}
 
@@ -101,7 +92,6 @@
 		margin-top: 4px;
 		transform-origin: bottom;
 		animation: arrow 15s infinite;
-		animation-delay: 3s;
 	}
 
 	@keyframes arrow {
