@@ -2,11 +2,26 @@
 	import { onMount } from 'svelte';
 	import { funFacts } from '../services/utils';
 	import { fade } from 'svelte/transition';
-	let funFact = 'You can tell the temperature by counting a cricket’s chirps!';
+	let funFact = funFacts[Math.floor(Math.random() * funFacts.length)];
 
 	onMount(() => {
 		const interval = setInterval(() => {
-			funFact = funFacts[Math.floor(Math.random() * funFacts.length)];
+			function nonEqualIndex() {
+				const randomNum = Math.floor(Math.random() * funFacts.length);
+				const exist = funFacts.find((_fact, index) => {
+					if (index !== randomNum) {
+						return false;
+					}
+					return true;
+				});
+				if (exist) {
+					return nonEqualIndex();
+				} else {
+					return randomNum;
+				}
+			}
+			const randomNum = nonEqualIndex();
+			funFact = funFacts[randomNum];
 		}, 15000);
 
 		return () => {
@@ -40,7 +55,7 @@
 	.fun-fact {
 		animation-name: tilt;
 		animation-duration: 0.5s;
-		animation-delay: 14.5s;
+		animation-delay: 12s;
 		animation-iteration-count: infinite;
 	}
 
