@@ -1,38 +1,44 @@
-# create-svelte
+# Eneko Weather
 
-Everything you need to build a Svelte project, powered by [`create-svelte`](https://github.com/sveltejs/kit/tree/master/packages/create-svelte).
+## What is it?
 
-## Creating a project
+Is an application that shows the current weather in a given location.
 
-If you're seeing this, you've probably already done this step. Congrats!
+The application is based on the [OpenWeatherMap API](https://openweathermap.org/api).
+
+This project was made for a `Hackathon` created by [Midudev](https://midu.dev) in Eneko.
+
+The point of this application is to show a different way of designing an application that is way times made with material ui or glassmorphisms etc, giving a try to the originality and `freedom of color expression`.
+
+## Stack and Inspiration
+
+- Front end made with [Svelte](https://svelte.dev/) and [SvelteKit](https://kit.svelte.dev)
+- Styling Inspirated in a new Design trend called NeuBrutalism [Example](https://theoutline.com/)
+
+## Features
+
+As simple as showing the current weather given a location.
+
+You can also see the weather in a selected location, as well three days ahead.
+
+Once opened a forecast day, you will see the weather in that day.
+
+In addition to that, you can select between two different themes (`default` and `wero`(my gf theme)).
+
+## Where to see it?
+
+The Project is deployed with [netlify](https://nelify.com) in a custom domain, so you can access it from any device.
+
+[enekoweather.lol](https://enekoweather.lol)
+
+## Using the project
 
 ```bash
+# install the dependencies
+npm install
+
 # create a new project in the current directory
-npm init svelte
-
-# create a new project in my-app
-npm init svelte my-app
-```
-
-## Developing
-
-Once you've created a project and installed dependencies with `npm install` (or `pnpm install` or `yarn`), start a development server:
-
-```bash
 npm run dev
-
-# or start the server and open the app in a new browser tab
-npm run dev -- --open
 ```
 
-## Building
-
-To create a production version of your app:
-
-```bash
-npm run build
-```
-
-You can preview the production build with `npm run preview`.
-
-> To deploy your app, you may need to install an [adapter](https://kit.svelte.dev/docs/adapters) for your target environment.
+Feel free to fork it and make your own version.
