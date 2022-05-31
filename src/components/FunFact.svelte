@@ -8,12 +8,7 @@
 		const interval = setInterval(() => {
 			function nonEqualIndex() {
 				const randomNum = Math.floor(Math.random() * funFacts.length);
-				const exist = funFacts.find((_fact, index) => {
-					if (index !== randomNum) {
-						return false;
-					}
-					return true;
-				});
+				const exist = funFacts[randomNum] === funFact;
 				if (exist) {
 					return nonEqualIndex();
 				} else {
@@ -30,13 +25,13 @@
 	});
 </script>
 
-<main transition:fade>
+<main>
 	<div class="watch-cap" />
 	<div class="watch-container">
 		<div class="watch-arrow" />
 	</div>
 	{#key funFact}
-		<div class="fun-fact" in:fade={{ delay: 200 }} out:fade={{ duration: 100 }}>
+		<div class="fun-fact" in:fade|local={{ delay: 300 }}>
 			<p>{funFact}</p>
 		</div>
 	{/key}
@@ -47,15 +42,12 @@
 		display: flex;
 		flex-direction: column;
 		align-items: center;
-		position: absolute;
-		margin-top: 4rem;
-		width: 85%;
 	}
 
 	.fun-fact {
 		animation-name: tilt;
-		animation-duration: 0.5s;
-		animation-delay: 12s;
+		animation-duration: 1s;
+		animation-delay: 13s;
 		animation-iteration-count: infinite;
 	}
 

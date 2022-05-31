@@ -70,7 +70,7 @@
 				{/each}
 			</ul>
 			<Config {coords} onUbi={getData} />
-			<div in:fade={{ delay: 3000 }}><FunFact /></div>
+			<div class="funfact" in:fade|local={{ delay: 3000 }}><FunFact /></div>
 		</section>
 		<Searcher onSearch={handleSearch} />
 	{:else}
@@ -145,5 +145,11 @@
 
 	section {
 		padding: 0.5rem 0;
+	}
+
+	.funfact {
+		position: absolute;
+		width: 80%;
+		bottom: 7rem;
 	}
 </style>
