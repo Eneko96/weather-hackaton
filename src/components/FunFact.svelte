@@ -3,11 +3,17 @@
 	import { funFacts } from '../services/utils';
 	import { fade } from 'svelte/transition';
 	let funFact = funFacts[Math.floor(Math.random() * funFacts.length)];
+	let installable = false;
+
+	function checkDevice() {
+		return window.innerWidth < 768;
+	}
 
 	onMount(() => {
 		const interval = setInterval(() => {
 			function nonEqualIndex() {
 				const randomNum = Math.floor(Math.random() * funFacts.length);
+				if (funFacts[randomNum] === funFacts.at(-1)) installable = true;
 				const exist = funFacts[randomNum] === funFact;
 				if (exist) {
 					return nonEqualIndex();
@@ -23,6 +29,51 @@
 			clearInterval(interval);
 		};
 	});
+
+	const handleInstall = async () => {
+		console.log('👍', 'butInstall-clicked');
+		// @ts-ignore-next-line
+		const promptEvent = window.deferredPrompt;
+
+		if (!promptEvent) {
+			// The deferred prompt isn't available.
+			console.log('👎', 'The deferred prompt isn`t available.');
+			return;
+		}
+
+		// Show the install prompt.
+		promptEvent.prompt();
+		// Log the result
+		const result = await promptEvent.userChoice;
+		console.log('👍', 'userChoice', result);
+		// Reset the deferred prompt variable, since
+		// prompt() can only be called once.
+		// @ts-ignore-next-line
+		window.deferredPrompt = null;
+		handleClose();
+	};
+
+	const handleClose = () => {
+		installable = false;
+		localStorage.setItem('installPrompt', 'true');
+	};
+
+	$: {
+		const isPhone = checkDevice();
+		const isInstalled = localStorage.getItem('installPrompt') || false;
+
+		window.addEventListener('beforeinstallprompt', (event) => {
+			// Prevent the mini-infobar from appearing on mobile.
+			event.preventDefault();
+			if (!isInstalled && isPhone) {
+				setShow(true);
+			}
+			console.log('👍', 'beforeinstallprompt', event);
+			// Stash the event so it can be triggered later.
+			// @ts-ignore-next-line
+			window.deferredPrompt = event;
+		});
+	}
 </script>
 
 <main>
@@ -35,6 +86,9 @@
 			<p>{funFact}</p>
 		</div>
 	{/key}
+	{#if installable}
+		<button class="install-cap" on:click={handleInstall}>Install</button>
+	{/if}
 </main>
 
 <style>

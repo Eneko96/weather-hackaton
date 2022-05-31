@@ -44,5 +44,7 @@ export const funFacts = [
 
 "A whiteout or heavy snowfall that makes it difficult to see, can make you feel sick.",
 
-"Wildfires sometimes create tornadoes made of fire called fire whirls."
+"Wildfires sometimes create tornadoes made of fire called fire whirls.",
+
+"You can actually install the application!"
 ]
