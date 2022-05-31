@@ -49,6 +49,7 @@
 		animation-duration: 1s;
 		animation-delay: 13s;
 		animation-iteration-count: infinite;
+		min-height: 2rem;
 	}
 
 	@keyframes tilt {
