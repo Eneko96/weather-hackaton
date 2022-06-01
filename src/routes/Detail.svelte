@@ -4,7 +4,7 @@
 	const forecast = history.state.forecast;
 	const { astro, day, hour } = forecast;
 	const checkDevice = window.innerWidth < 768;
-	const installed = Boolean(localStorage.getItem('installPrompt')) && !checkDevice;
+	const installed = Boolean(localStorage.getItem('installPrompt')) || !checkDevice;
 
 	const hoursToShow = [hour[6], hour[8], hour[12], hour[16], hour[20], hour[0]];
 
