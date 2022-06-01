@@ -3,7 +3,8 @@
 	import Card from '../components/Card.svelte';
 	const forecast = history.state.forecast;
 	const { astro, day, hour } = forecast;
-	const installed = Boolean(localStorage.getItem('installPrompt'));
+	const checkDevice = window.innerWidth < 768;
+	const installed = Boolean(localStorage.getItem('installPrompt')) && checkDevice;
 
 	const hoursToShow = [hour[6], hour[8], hour[12], hour[16], hour[20], hour[0]];
 
@@ -29,8 +30,6 @@
 			return '🥶';
 		}
 	};
-
-	const checkDevice = () => window.innerWidth < 768;
 
 	const handleClose = () => {
 		localStorage.setItem('installPrompt', 'true');
@@ -88,7 +87,7 @@
 		</Card>
 		<footer>
 			<button on:click={() => goto('/')}>Back</button>
-			{#if installed}<button class="install-btn" on:click={handleInstall}>Install</button>{/if}
+			{#if !installed}<button class="install-btn" on:click={handleInstall}>Install</button>{/if}
 		</footer>
 	</main>
 {/key}
