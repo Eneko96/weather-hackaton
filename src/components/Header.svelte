@@ -20,7 +20,7 @@
 			</div>
 			<div class="condition">
 				<WeatherIcon icon={findKind(conditionText, isDay)} />
-				<div>{maxTemp}º/{minTemp}º</div>
+				<div>{minTemp}º/{maxTemp}º</div>
 			</div>
 			<h3>{conditionText}</h3>
 		</section>

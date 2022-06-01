@@ -10,7 +10,7 @@
 	export let conditionText;
 	const isDay = true;
 
-	const formattedDate = new Intl.DateTimeFormat('detault', { weekday: 'long' }).format(
+	const formattedDate = new Intl.DateTimeFormat('en-US', { weekday: 'long' }).format(
 		new Date(date)
 	);
 </script>
