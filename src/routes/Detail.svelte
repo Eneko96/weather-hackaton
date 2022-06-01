@@ -1,10 +1,11 @@
 <script>
 	import { goto } from '$app/navigation';
+import { onMount } from 'svelte';
 	import Card from '../components/Card.svelte';
 	const forecast = history.state.forecast;
 	const { astro, day, hour } = forecast;
-	const checkDevice = window.innerWidth < 768;
-	const installed = Boolean(localStorage.getItem('installPrompt')) || !checkDevice;
+	const checkDevice = typeof window != 'undefined' && window.innerWidth < 768;
+	let installed
 
 	const hoursToShow = [hour[6], hour[8], hour[12], hour[16], hour[20], hour[0]];
 
@@ -31,12 +32,28 @@
 		}
 	};
 
+	onMount(() => {
+		const isPhone = checkDevice
+		const isInstalled = localStorage.getItem('installPrompt') || false
+		console.log(window.deferredPrompt)
+		window.addEventListener('beforeinstallprompt', (event) => {
+			event.preventDefault()
+			if (!isInstalled && isPhone) {
+				installed = false
+			}
+			console.log('beforeinstallprompt', event)
+
+			window.deferredPrompt = event
+		})
+	})
+
 	const handleClose = () => {
 		localStorage.setItem('installPrompt', 'true');
 	};
 
 	const handleInstall = async () => {
 		const promptEvent = window.deferredPrompt;
+		console.log(window.deferredPrompt)
 
 		if (!promptEvent) {
 			console.log('deferred prompt not available');
