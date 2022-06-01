@@ -3,6 +3,7 @@
 	import Card from '../components/Card.svelte';
 	const forecast = history.state.forecast;
 	const { astro, day, hour } = forecast;
+	const installed = Boolean(localStorage.getItem('installPrompt'));
 
 	const hoursToShow = [hour[6], hour[8], hour[12], hour[16], hour[20], hour[0]];
 
@@ -27,6 +28,28 @@
 		} else {
 			return '🥶';
 		}
+	};
+
+	const checkDevice = () => window.innerWidth < 768;
+
+	const handleClose = () => {
+		localStorage.setItem('installPrompt', 'true');
+	};
+
+	const handleInstall = async () => {
+		const promptEvent = window.deferredPrompt;
+
+		if (!promptEvent) {
+			console.log('deferred prompt not available');
+			return;
+		}
+		promptEvent.prompt();
+
+		const result = await promptEvent.userChoice;
+		console.log('userChoice', result);
+
+		window.deferredPrompt = null;
+		handleClose();
 	};
 </script>
 
@@ -65,6 +88,7 @@
 		</Card>
 		<footer>
 			<button on:click={() => goto('/')}>Back</button>
+			{#if installed}<button class="install-btn" on:click={handleInstall}>Install</button>{/if}
 		</footer>
 	</main>
 {/key}
@@ -131,5 +155,12 @@
 		position: relative;
 		bottom: 2px;
 		font-size: 0.7rem;
+	}
+
+	.install-btn {
+		right: 0;
+		position: absolute;
+		margin-right: 1rem;
+		background-color: var(--secondary);
 	}
 </style>

@@ -2,9 +2,7 @@
 	import { onMount } from 'svelte';
 	import { funFacts } from '../services/utils';
 	import { fade } from 'svelte/transition';
-	const installed = Boolean(localStorage.getItem('installPrompt'));
-	let funFact = installed ? funFacts[Math.floor(Math.random() * funFacts.length)] : funFacts.at(-1);
-	let installable = installed ? false : true;
+	let funFact = funFacts[Math.floor(Math.random() * funFacts.length)];
 
 	function checkDevice() {
 		return window.innerWidth < 768;
@@ -14,8 +12,6 @@
 		const interval = setInterval(() => {
 			function nonEqualIndex() {
 				const randomNum = Math.floor(Math.random() * funFacts.length);
-				if (funFacts[randomNum] === funFacts.at(-1)) installable = true;
-				else installable = false;
 				const exist = funFacts[randomNum] === funFact;
 				if (exist) {
 					return nonEqualIndex();
@@ -88,9 +84,6 @@
 			<p>{funFact}</p>
 		</div>
 	{/key}
-	{#if installable}
-		<button class="install-cap" on:click={handleInstall}>Install</button>
-	{/if}
 </main>
 
 <style>
